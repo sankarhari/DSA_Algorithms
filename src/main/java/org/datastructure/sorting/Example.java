@@ -1,8 +1,6 @@
-package org.example;
+package org.datastructure.sorting;
 
-import org.example.sorting.Util;
-import org.example.sorting.impl.*;
-import org.example.sorting.SortOrder;
+import org.datastructure.sorting.impl.*;
 
 import java.util.List;
 
@@ -10,7 +8,7 @@ import java.util.List;
  * Hello world!
  *
  */
-public class App 
+public class Example
 {
     public static void main(String[] args){
 
@@ -18,7 +16,7 @@ public class App
         long endTime;
         List<Integer> output;
 
-        List<Integer> inputList = Util.getRandomList(100000, 1, 10000000);
+        List<Integer> inputList = Util.getRandomList(1000, 1, 10000000);
         System.out.println("Input Array:\n" + inputList + "\n");
 
         startTime = System.currentTimeMillis();

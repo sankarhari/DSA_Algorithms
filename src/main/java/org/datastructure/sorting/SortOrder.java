@@ -1,4 +1,4 @@
-package org.example.sorting;
+package org.datastructure.sorting;
 
 public enum SortOrder{
     ASC, DESC;

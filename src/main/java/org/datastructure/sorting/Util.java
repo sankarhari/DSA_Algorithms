@@ -1,9 +1,8 @@
-package org.example.sorting;
+package org.datastructure.sorting;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Util {
 

@@ -1,7 +1,7 @@
-package org.example.sorting;
+package org.datastructure.sorting;
 
 import junit.framework.TestCase;
-import org.example.sorting.impl.*;
+import org.datastructure.sorting.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;

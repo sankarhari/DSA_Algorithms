@@ -1,4 +1,4 @@
-package org.example.sorting;
+package org.datastructure.sorting;
 
 import java.util.ArrayList;
 import java.util.List;

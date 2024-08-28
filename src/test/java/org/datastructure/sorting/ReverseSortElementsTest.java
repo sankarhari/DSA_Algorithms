@@ -1,16 +1,11 @@
-package org.example.sorting;
+package org.datastructure.sorting;
 
-import org.example.sorting.impl.*;
-import org.junit.Test;
+import org.datastructure.sorting.impl.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.TestCase;
-import org.example.sorting.impl.BubbleSort;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 

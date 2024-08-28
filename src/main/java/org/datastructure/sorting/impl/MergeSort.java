@@ -1,7 +1,7 @@
-package org.example.sorting.impl;
+package org.datastructure.sorting.impl;
 
-import org.example.sorting.Sort;
-import org.example.sorting.SortOrder;
+import org.datastructure.sorting.Sort;
+import org.datastructure.sorting.SortOrder;
 
 import java.util.ArrayList;
 import java.util.List;
