@@ -1,6 +1,6 @@
 package org.example.sorting;
 
-import org.example.sorting.impl.BubbleSort;
+import org.example.sorting.impl.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,9 +8,6 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import org.example.sorting.impl.BubbleSort;
-import org.example.sorting.impl.InsertionSort;
-import org.example.sorting.impl.MergeSort;
-import org.example.sorting.impl.SelectionSort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +36,11 @@ public class ReverseSortElementsTest extends TestCase {
 
     public void testSelectionSorted() {
         List<Integer> actual = SelectionSort.sort(input, SortOrder.DESC);
+        assertIterableEquals(expected, actual);
+    }
+
+    public void testQuickSorted() {
+        List<Integer> actual = QuickSort.sort(input, SortOrder.DESC);
         assertIterableEquals(expected, actual);
     }
 }

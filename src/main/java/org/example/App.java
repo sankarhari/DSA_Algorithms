@@ -1,10 +1,7 @@
 package org.example;
 
 import org.example.sorting.Util;
-import org.example.sorting.impl.BubbleSort;
-import org.example.sorting.impl.InsertionSort;
-import org.example.sorting.impl.MergeSort;
-import org.example.sorting.impl.SelectionSort;
+import org.example.sorting.impl.*;
 import org.example.sorting.SortOrder;
 
 import java.util.List;
@@ -21,8 +18,24 @@ public class App
         long endTime;
         List<Integer> output;
 
-        List<Integer> inputList = Util.getRandomList();
+        List<Integer> inputList = Util.getRandomList(100000, 1, 10000000);
         System.out.println("Input Array:\n" + inputList + "\n");
+
+        startTime = System.currentTimeMillis();
+        output = QuickSort.sort(inputList, SortOrder.DESC);
+        endTime = System.currentTimeMillis();
+
+//        System.out.println("Quick Sort Output:\n" + output);
+        System.out.println("Quick Sort Execution time: " + (endTime - startTime) + "ms\n");
+
+
+
+        startTime = System.currentTimeMillis();
+        output = MergeSort.sort(inputList, SortOrder.DESC);
+        endTime = System.currentTimeMillis();
+
+//        System.out.println("Merg Sort Output:\n" + output);
+        System.out.println("Merg Sort Execution time: " + (endTime - startTime) + "ms\n");
 
         startTime = System.currentTimeMillis();
         output = BubbleSort.sort(inputList, SortOrder.DESC);
@@ -44,12 +57,5 @@ public class App
 
 //        System.out.println("Insertion Sort Output:\n" + output);
         System.out.println("Insertion Sort Execution time: " + (endTime - startTime) + "ms\n");
-
-        startTime = System.currentTimeMillis();
-        output = MergeSort.sort(inputList, SortOrder.DESC);
-        endTime = System.currentTimeMillis();
-
-//        System.out.println("Merg Sort Output:\n" + output);
-        System.out.println("Merg Sort Execution time: " + (endTime - startTime) + "ms\n");
     }
 }

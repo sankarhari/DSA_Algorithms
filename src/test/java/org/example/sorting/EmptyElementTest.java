@@ -1,10 +1,7 @@
 package org.example.sorting;
 
 import junit.framework.TestCase;
-import org.example.sorting.impl.BubbleSort;
-import org.example.sorting.impl.InsertionSort;
-import org.example.sorting.impl.MergeSort;
-import org.example.sorting.impl.SelectionSort;
+import org.example.sorting.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,11 @@ public class EmptyElementTest extends TestCase {
 
     public void testSelectionSort() {
         List<Integer> actual = SelectionSort.sort(input, SortOrder.DESC);
+        assertIterableEquals(expected, actual);
+    }
+
+    public void testQuickSort() {
+        List<Integer> actual = QuickSort.sort(input, SortOrder.DESC);
         assertIterableEquals(expected, actual);
     }
 }
