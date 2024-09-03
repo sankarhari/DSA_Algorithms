@@ -1,8 +1,8 @@
-package org.datastructure.graph;
+package org.datastructure.example;
 
-import java.util.List;
+import org.datastructure.graph.impl.UndirectedGraph;
 
-public class Example {
+public class GraphExample {
 
     public static void main(String[] args){
         UndirectedGraph graph = new UndirectedGraph();
@@ -32,5 +32,23 @@ public class Example {
         graph.depthFirstSearch();
 
         graph.isReachable("A","H");
+
+        UndirectedGraph graph2 = new UndirectedGraph();
+
+        graph2.addVertexes("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+
+        graph2.setSourceVertex("1");
+
+        graph2.addEdge("1", "3");
+        graph2.addEdge("1","7");
+        graph2.addEdge("3","7");
+        graph2.addEdge("4","9");
+        graph2.addEdge("8","5");
+        graph2.addEdge("6","8");
+        graph2.addEdge("5","10");
+        graph2.addEdge("6","10");
+        graph2.print();
+
+        graph2.numberOfProvinces();
     }
 }

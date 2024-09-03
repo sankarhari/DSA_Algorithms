@@ -1,12 +1,15 @@
-package org.datastructure.graph;
+package org.datastructure.graph.impl;
+
+import org.datastructure.graph.GraphOperations;
 
 import java.util.*;
 
-public class UndirectedGraph {
+public class UndirectedGraph implements GraphOperations {
 
     private Map<String, Set<String>> graph = new HashMap<>();
     private String sourceVertex;
 
+    @Override
     public void setSourceVertex(String vertex){
         if(!this.graph.containsKey(vertex))
         {
@@ -16,16 +19,19 @@ public class UndirectedGraph {
         this.sourceVertex = vertex;
     }
 
+    @Override
     public void addVertex(String vertex){
         this.graph.putIfAbsent(vertex, new HashSet<>());
     }
 
+    @Override
     public void addVertexes(String... vertexes){
         for(String vertex: vertexes){
             this.graph.putIfAbsent(vertex, new HashSet<>());
         }
     }
 
+    @Override
     public void addEdge(String source, String destination){
         if(!this.graph.containsKey(source) || !this.graph.containsKey(destination)){
             throw new RuntimeException("Both source \"" + source + "\" and destination \"" + destination + "\" vertex must exist in the graph");
@@ -35,6 +41,7 @@ public class UndirectedGraph {
         this.graph.get(destination).add(source);
     }
 
+    @Override
     public void removeVertex(String vertex){
         if(!this.graph.containsKey(vertex))
         {
@@ -48,6 +55,7 @@ public class UndirectedGraph {
         this.graph.remove(vertex);
     }
 
+    @Override
     public void removeEdge(String source, String destination){
         if(!this.graph.containsKey(source) || !this.graph.containsKey(destination)){
             throw new RuntimeException("Both source \"" + source + "\" and destination \"" + destination + "\" vertex must exist in the graph");
@@ -57,6 +65,7 @@ public class UndirectedGraph {
         this.graph.get(destination).remove(source);
     }
 
+    @Override
     public void print(){
         for(String vertex: this.graph.keySet()){
             System.out.print(vertex + " -> ");
@@ -64,6 +73,7 @@ public class UndirectedGraph {
         }
     }
 
+    @Override
     public void breadthFirstSearch(){
         List<String> visited = new ArrayList<>();
         List<String> traversal = new ArrayList<>();
@@ -71,7 +81,7 @@ public class UndirectedGraph {
         System.out.println(String.join(", ", traversal));
     }
 
-    public void breadthFirstSearch(List<String> traversal,List<String> visited){
+    private void breadthFirstSearch(List<String> traversal,List<String> visited){
         Queue<String> bfsQueue = new LinkedList<>();
         bfsQueue.add(this.sourceVertex);
         while(!bfsQueue.isEmpty())
@@ -86,6 +96,7 @@ public class UndirectedGraph {
         }
     }
 
+    @Override
     public void depthFirstSearch(){
         List<String> visited = new ArrayList<>();
         List<String> traversal = new ArrayList<>();
@@ -93,7 +104,7 @@ public class UndirectedGraph {
         System.out.println(String.join(", ", traversal));
     }
 
-    public void depthFirstSearch(List<String> traversal, List<String> visited){
+    private void depthFirstSearch(List<String> traversal, List<String> visited){
 
         Stack<String> dfsStack = new Stack<>();
         dfsStack.push(this.sourceVertex);
@@ -108,6 +119,7 @@ public class UndirectedGraph {
         }
     }
 
+    @Override
     public void isReachable(String source, String destination){
         List<String> path = new ArrayList<>();
         List<String> visited = new ArrayList<>();
@@ -138,4 +150,30 @@ public class UndirectedGraph {
         return answer;
     }
 
+    @Override
+    public void numberOfProvinces(){
+        Set<String> visited = new HashSet<>();
+        Set<String> source = new HashSet<>();
+        for(String vertex: this.graph.keySet()){
+
+            if(!visited.contains(vertex)){
+                source.add(vertex);
+                numberOfProvinces(vertex, visited);
+            }
+        }
+        System.out.println("Prince Count is: " + source.size());
+    }
+
+    private void numberOfProvinces(String vertex, Set<String> visited)
+    {
+        if(!visited.contains(vertex)) {
+            visited.add(vertex);
+        }
+        Set<String> destinations = this.graph.get(vertex);
+        for(String destination: destinations) {
+            if(!visited.contains(destination)) {
+                numberOfProvinces(destination, visited);
+            }
+        }
+    }
 }
