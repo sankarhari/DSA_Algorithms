@@ -1,5 +1,7 @@
-package org.datastructure.sorting;
+package org.datastructure.example;
 
+import org.datastructure.sorting.SortOrder;
+import org.datastructure.sorting.Util;
 import org.datastructure.sorting.impl.*;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
  * Hello world!
  *
  */
-public class Example
+public class SortingExample
 {
     public static void main(String[] args){
 

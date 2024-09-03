@@ -1,8 +1,5 @@
 package org.datastructure.linkedlist;
 
-import org.datastructure.linkedlist.impl.DLLNode;
-import org.datastructure.linkedlist.impl.SLLNode;
-
 import java.util.List;
 
 public interface ListOperations<N extends Node, T>{

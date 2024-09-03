@@ -1,4 +1,4 @@
-package org.datastructure.linkedlist;
+package org.datastructure.example;
 
 import org.datastructure.linkedlist.impl.DLLNode;
 import org.datastructure.linkedlist.impl.DoublyLinkedList;
@@ -7,11 +7,11 @@ import org.datastructure.linkedlist.impl.SinglyLinkedList;
 
 import java.util.List;
 
-public class Example {
+public class LinkedListExample {
 
 
     public static void main(String[] args){
-        SinglyLinkedList<Integer> testSLL = new SinglyLinkedList<Integer>();
+        SinglyLinkedList<Integer> testSLL = new SinglyLinkedList<>();
 
         List<Integer> output;
 
@@ -49,8 +49,6 @@ public class Example {
         System.out.println("\n\n==========Double Linked List==============\n\n");
 
         DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<>();
-
-        List<Integer> outputDLL;
 
         testDLL.print();
 

@@ -3,7 +3,6 @@ package org.datastructure.linkedlist;
 import junit.framework.TestCase;
 import org.datastructure.linkedlist.impl.DLLNode;
 import org.datastructure.linkedlist.impl.DoublyLinkedList;
-import org.datastructure.linkedlist.impl.SinglyLinkedList;
 
 import java.util.List;
 
