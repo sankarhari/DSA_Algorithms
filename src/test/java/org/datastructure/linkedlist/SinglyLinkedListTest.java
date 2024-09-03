@@ -4,12 +4,11 @@ import junit.framework.TestCase;
 import org.datastructure.linkedlist.impl.SLLNode;
 import org.datastructure.linkedlist.impl.SinglyLinkedList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
-public class SingleLinkedListTest extends TestCase {
+public class SinglyLinkedListTest extends TestCase {
 
     public SinglyLinkedList<Integer> createList(){
         SinglyLinkedList<Integer> sll = new SinglyLinkedList<>();

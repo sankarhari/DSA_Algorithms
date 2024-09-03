@@ -5,49 +5,49 @@ import org.datastructure.linkedlist.ListOperations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SinglyLinkedList<T> implements ListOperations<SLLNode<T>, T> {
-    private SLLNode<T> headNode;
-    private SLLNode<T> tailNode;
+public class DoublyLinkedList<T> implements ListOperations<DLLNode<T>, T> {
+    private DLLNode<T> headNode;
+    private DLLNode<T> tailNode;
     private int size = 0;
-
+    
     @Override
-    public void add(SLLNode<T> node) {
+    public void add(DLLNode<T> node) {
         insertAtEnd(node);
     }
 
     @Override
-    public void insertAtBeginning(SLLNode<T> node){
-
+    public void insertAtBeginning(DLLNode<T> node){
         if(this.headNode == null){
             this.tailNode = node;
         }
-        else {
+        else{
             node.setNextNode(this.headNode);
+            this.headNode.setPreviousNode(node);
         }
         this.headNode = node;
         this.size++;
     }
 
     @Override
-    public void insertAtEnd(SLLNode<T> node){
-        if(this.headNode == null){
+    public void insertAtEnd(DLLNode<T> node) {
+        if (this.headNode == null) {
             this.headNode = node;
-        }
-        else
-        {
+        } else {
             this.tailNode.setNextNode(node);
+            node.setPreviousNode(this.tailNode);
         }
         this.tailNode = node;
         this.size++;
     }
 
     @Override
-    public void insertAfter(int position, SLLNode<T> node){
+    public void insertAfter(int position, DLLNode<T> node){
         if(position > this.size){
             System.out.println("Invalid Position. List size is: " + this.size);
         }
         else if(position == 0)
         {
+            this.headNode.setPreviousNode(node);
             node.setNextNode(this.headNode);
             this.headNode = node;
             this.size++;
@@ -55,13 +55,15 @@ public class SinglyLinkedList<T> implements ListOperations<SLLNode<T>, T> {
         else
         {
             int counter = 0;
-            SLLNode<T> currentNode = this.headNode;
-            SLLNode<T> prevNode = null;
+            DLLNode<T> currentNode = this.headNode;
+            DLLNode<T> prevNode = null;
             while(counter <= this.size + 1){
                 if(counter == position)
                 {
                     prevNode.setNextNode(node);
+                    node.setPreviousNode(prevNode);
                     node.setNextNode(currentNode);
+                    currentNode.setPreviousNode(node);
                     this.size++;
                     break;
                 }
@@ -80,17 +82,25 @@ public class SinglyLinkedList<T> implements ListOperations<SLLNode<T>, T> {
         else if(position == 0)
         {
             this.headNode = this.headNode.getNextNode();
+            this.headNode.setPreviousNode(null);
             this.size--;
         }
         else
         {
             int counter = 0;
-            SLLNode<T> currentNode = this.headNode;
-            SLLNode<T> prevNode = null;
+            DLLNode<T> currentNode = this.headNode;
+            DLLNode<T> prevNode = null;
             while(counter <= this.size){
                 if(counter == position)
                 {
                     prevNode.setNextNode(currentNode.getNextNode());
+                    if(currentNode.getNextNode() != null) {
+                        currentNode.getNextNode().setPreviousNode(prevNode);
+                    }
+                    else
+                    {
+                        this.tailNode = prevNode;
+                    }
                     this.size--;
                     break;
                 }
@@ -108,7 +118,7 @@ public class SinglyLinkedList<T> implements ListOperations<SLLNode<T>, T> {
         }
         else {
             boolean isNextNode = true;
-            SLLNode<T> current = this.headNode;
+            DLLNode<T> current = this.headNode;
             while (isNextNode) {
                 if(current.getValue() == value){
                     return true;
@@ -134,12 +144,35 @@ public class SinglyLinkedList<T> implements ListOperations<SLLNode<T>, T> {
             System.out.println("List is empty");
         }
         else {
-            SLLNode<T> current = this.headNode;
-            while (true) {
-                System.out.print(current.getValue() + " -> ");
-                current = current.getNextNode();
-                if (current == null) {
-                    System.out.print("NULL");
+            DLLNode<T> currentNode = this.headNode;
+            System.out.print("NULL <-> ");
+            while(true)
+            {
+                System.out.print(currentNode.getValue() + " <-> ");
+                currentNode = currentNode.getNextNode();
+                if(currentNode == null)
+                {
+                    System.out.println("NULL");
+                    break;
+                }
+            }
+        }
+    }
+
+    public void printReverse(){
+        if(this.headNode == null){
+            System.out.println("List is empty");
+        }
+        else {
+            DLLNode<T> currentNode = this.tailNode;
+            System.out.print("NULL <-> ");
+            while(true)
+            {
+                System.out.print(currentNode.getValue() + " <-> ");
+                currentNode = currentNode.getPreviousNode();
+                if(currentNode == null)
+                {
+                    System.out.println("NULL");
                     break;
                 }
             }
@@ -149,14 +182,29 @@ public class SinglyLinkedList<T> implements ListOperations<SLLNode<T>, T> {
     @Override
     public List<T> toList(){
         List<T> output = new ArrayList<>();
-        if(this.headNode != null){
-            SLLNode<T> current = this.headNode;
-            while (true) {
-                output.add(current.getValue());
-                current = current.getNextNode();
-                if (current == null) {
-                    break;
-                }
+        DLLNode<T> currentNode = this.headNode;
+        while(true)
+        {
+            output.add(currentNode.getValue());
+            currentNode = currentNode.getNextNode();
+            if(currentNode == null)
+            {
+                break;
+            }
+        }
+        return output;
+    }
+
+    public List<T> toReverseList(){
+        List<T> output = new ArrayList<>();
+        DLLNode<T> currentNode = this.tailNode;
+        while(true)
+        {
+            output.add(currentNode.getValue());
+            currentNode = currentNode.getPreviousNode();
+            if(currentNode == null)
+            {
+                break;
             }
         }
         return output;

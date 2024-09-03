@@ -1,5 +1,7 @@
 package org.datastructure.linkedlist;
 
+import org.datastructure.linkedlist.impl.DLLNode;
+import org.datastructure.linkedlist.impl.DoublyLinkedList;
 import org.datastructure.linkedlist.impl.SLLNode;
 import org.datastructure.linkedlist.impl.SinglyLinkedList;
 
@@ -44,10 +46,48 @@ public class Example {
         SLLNode<Integer> newNode4 = new SLLNode<>();
         newNode4.setValue(13);
 
-        testSLL.insertAfter(3, newNode4);
-        System.out.println("\nList size: " + testSLL.size());
-        testSLL.print();
-        output = testSLL.toList();
-        System.out.println(output);
+        System.out.println("\n\n==========Double Linked List==============\n\n");
+
+        DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<>();
+
+        List<Integer> outputDLL;
+
+        testDLL.print();
+
+        DLLNode<Integer> newNd= new DLLNode<>();
+        newNd.setValue(10);
+
+        DLLNode<Integer> newNd2 = new DLLNode<>();
+        newNd2.setValue(40);
+
+        DLLNode<Integer> newNd3 = new DLLNode<>();
+        newNd3.setValue(50);
+
+        testDLL.add(newNd);
+        testDLL.add(newNd3);
+        testDLL.insertAtBeginning(newNd2);
+
+        testDLL.print();
+        testDLL.printReverse();
+        System.out.println(testDLL.toList());
+
+        DLLNode<Integer> nd5 = new DLLNode<>();
+        nd5.setValue(30);
+
+        testDLL.insertAfter(1, nd5);
+
+        testDLL.print();
+        testDLL.printReverse();
+        System.out.println("List size: " + testDLL.size());
+
+        System.out.println("Searching 60: " +testDLL.search(30));
+        System.out.println("Searching 60: " +testDLL.search(60));
+
+        testDLL.deleteNode(1);
+
+        testDLL.print();
+        testDLL.printReverse();
+        System.out.println("List size: " + testDLL.size());
+
     }
 }

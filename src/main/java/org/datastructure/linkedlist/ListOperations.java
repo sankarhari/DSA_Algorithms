@@ -1,16 +1,17 @@
 package org.datastructure.linkedlist;
 
+import org.datastructure.linkedlist.impl.DLLNode;
 import org.datastructure.linkedlist.impl.SLLNode;
 
 import java.util.List;
 
-public interface ListOperations<T> {
+public interface ListOperations<N extends Node, T>{
 
     //Insert Element to a Linked List
-    void add(SLLNode<T> node);
-    void insertAtBeginning(SLLNode<T> node);
-    void insertAtEnd(SLLNode<T> node);
-    void insertAfter(int position, SLLNode<T> newNode);
+    void add(N node);
+    void insertAtBeginning(N node);
+    void insertAtEnd(N node);
+    void insertAfter(int position, N newNode);
 
     //Delete Elements from a Linked List
     void deleteNode(int position);

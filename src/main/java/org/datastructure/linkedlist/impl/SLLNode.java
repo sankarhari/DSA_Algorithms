@@ -1,6 +1,8 @@
 package org.datastructure.linkedlist.impl;
 
-public class SLLNode<T>{
+import org.datastructure.linkedlist.Node;
+
+public class SLLNode<T> extends Node {
     private T value;
     private SLLNode<T> nextNode;
 
