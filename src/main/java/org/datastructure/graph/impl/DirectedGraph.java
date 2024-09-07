@@ -4,13 +4,14 @@ import org.datastructure.graph.GraphOperations;
 
 import java.util.*;
 
-public class UndirectedGraph implements GraphOperations {
+public class DirectedGraph implements GraphOperations {
 
     private Map<String, Set<String>> graph = new HashMap<>();
     private String sourceVertex;
 
     @Override
     public void setSourceVertex(String vertex){
+
         if(!this.graph.containsKey(vertex))
         {
             throw new RuntimeException("Given vertex \"" + vertex + "\" not found in graph.");
@@ -38,7 +39,6 @@ public class UndirectedGraph implements GraphOperations {
         }
 
         this.graph.get(source).add(destination);
-        this.graph.get(destination).add(source);
     }
 
     @Override
@@ -48,8 +48,9 @@ public class UndirectedGraph implements GraphOperations {
             throw new RuntimeException("Given vertex \"" + vertex + "\" not found in graph.");
         }
 
-        for(String destination: this.graph.get(vertex)){
-            this.graph.get(destination).remove(vertex);
+        Set<String> vertexes = this.graph.keySet();
+        for(String checkVertex: vertexes){
+            this.graph.get(checkVertex).remove(vertex);
         }
 
         this.graph.remove(vertex);
@@ -62,7 +63,6 @@ public class UndirectedGraph implements GraphOperations {
         }
 
         this.graph.get(source).remove(destination);
-        this.graph.get(destination).remove(source);
     }
 
     @Override
@@ -164,6 +164,7 @@ public class UndirectedGraph implements GraphOperations {
                 numberOfProvinces(vertex, visited);
             }
         }
+        System.out.println(source);
         System.out.println("Prince Count is: " + source.size());
         return source.size();
     }

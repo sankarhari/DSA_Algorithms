@@ -1,5 +1,7 @@
 package org.datastructure.graph;
 
+import java.util.List;
+
 public interface GraphOperations {
     void setSourceVertex(String vertex);
     void addVertex(String vertex);
@@ -8,8 +10,8 @@ public interface GraphOperations {
     void removeVertex(String vertex);
     void removeEdge(String source, String destination);
     void print();
-    void breadthFirstSearch();
-    void depthFirstSearch();
-    void isReachable(String source, String destination);
-    void numberOfProvinces();
+    List<String> breadthFirstSearch();
+    List<String> depthFirstSearch();
+    boolean isReachable(String source, String destination);
+    int numberOfProvinces();
 }

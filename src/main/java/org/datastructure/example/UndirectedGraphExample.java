@@ -2,7 +2,7 @@ package org.datastructure.example;
 
 import org.datastructure.graph.impl.UndirectedGraph;
 
-public class GraphExample {
+public class UndirectedGraphExample {
 
     public static void main(String[] args){
         UndirectedGraph graph = new UndirectedGraph();
